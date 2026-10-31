@@ -47,7 +47,9 @@ fun Greeting(name: String, modifier: Modifier = Modifier) {
     var message by rememberSaveable { mutableStateOf("Android") }
     Scaffold(
         bottomBar = {
-            Box(modifier.fillMaxWidth(), contentAlignment = Alignment.Center ) {
+            Box(
+                modifier.fillMaxWidth().padding(20.dp),
+                contentAlignment = Alignment.Center ) {
                 Button(onClick = { message = "again" }) {
                     Text("Click Me")
                 }
