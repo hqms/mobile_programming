@@ -39,6 +39,26 @@ class MainActivity : ComponentActivity() {
             }
         }
     }
+
+    // On Start, when activity is visible to user
+    override fun onStart() {
+        super.onStart()
+    }
+
+    // On Resume, when activity is visible to user and has focus
+    override fun onResume() {
+        super.onResume()
+    }
+
+    // On Pause, when activity is not visible to user
+    override fun onPause() {
+        super.onPause()
+    }
+
+    // On Stop, when activity is no longer visible to user
+    override fun onStop() {
+        super.onStop()
+    }
 }
 
 @Composable
