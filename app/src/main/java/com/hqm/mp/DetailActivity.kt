@@ -24,6 +24,10 @@ class DetailActivity : ComponentActivity() {
         val majorText = findViewById<TextView>(R.id.major_textview)
         majorText.text = major
 
+        val gender = intent.getStringExtra("GENDER")
+        val genderText = findViewById<TextView>(R.id.gender_text)
+        genderText.text = gender
+
         val backBtn : Button = findViewById(R.id.button)
         backBtn.setOnClickListener {
             finish()
