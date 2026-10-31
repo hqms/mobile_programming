@@ -11,21 +11,32 @@
         android:id="@+id/imageView"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
+        android:contentDescription="@null"
         android:src="@drawable/metaguna" />
 
-    <TextView
-        android:id="@+id/name_text"
+    <com.google.android.material.textfield.TextInputLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:padding="@dimen/padding_default"
-        android:text="name" />
+        android:hint="Name">
 
-    <TextView
-        android:id="@+id/major_text"
+        <com.google.android.material.textfield.TextInputEditText
+            android:id="@+id/name_text"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="name" />
+    </com.google.android.material.textfield.TextInputLayout>
+
+    <com.google.android.material.textfield.TextInputLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:padding="@dimen/padding_default"
-        android:text="major" />
+        android:hint="Major">
+
+        <com.google.android.material.textfield.TextInputEditText
+            android:id="@+id/major_text"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="major" />
+    </com.google.android.material.textfield.TextInputLayout>
 
     <Button
         android:id="@+id/detail_btn"
