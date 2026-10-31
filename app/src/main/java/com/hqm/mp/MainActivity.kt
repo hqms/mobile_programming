@@ -1,11 +1,12 @@
 package com.hqm.mp
 
 import android.os.Bundle
+import android.widget.EditText
+import android.widget.Toast
 import androidx.activity.ComponentActivity
 import androidx.activity.compose.setContent
 import androidx.activity.enableEdgeToEdge
 import androidx.compose.foundation.layout.Box
-import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.padding
 import androidx.compose.material3.Scaffold
@@ -24,7 +25,10 @@ import androidx.compose.runtime.mutableStateOf
 import androidx.compose.runtime.saveable.rememberSaveable
 import androidx.compose.runtime.getValue
 import androidx.compose.runtime.setValue
-
+import androidx.compose.ui.res.painterResource
+import androidx.compose.foundation.Image
+import androidx.compose.material3.TextField
+import android.content.Context
 
 class MainActivity : ComponentActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -34,7 +38,8 @@ class MainActivity : ComponentActivity() {
             MPTheme {
                     Greeting(
                         name = "Android",
-                        modifier = Modifier
+                        modifier = Modifier,
+                        this
                     )
             }
         }
@@ -42,28 +47,38 @@ class MainActivity : ComponentActivity() {
 }
 
 @Composable
-fun Greeting(name: String, modifier: Modifier = Modifier) {
-    var message by rememberSaveable { mutableStateOf("Android") }
+fun Greeting(name: String, modifier: Modifier = Modifier, context: Context ) {
+    var name by rememberSaveable { mutableStateOf("Name") }
+    var major by rememberSaveable { mutableStateOf("Major") }
     Scaffold(
         bottomBar = {
             Box(
                 modifier.fillMaxWidth().padding(20.dp),
                 contentAlignment = Alignment.Center ) {
-                Button(onClick = { message = "again" }) {
-                    Text("Click Me")
+                Button(onClick = { Toast.makeText(context , "Hello $name !", Toast.LENGTH_LONG).show() }) {
+                    Text("Show Profile")
                 }
             }
         }
     ) { innerPadding ->
-        Text(
-            text = "Hello $message!",
-            modifier = modifier
-                .fillMaxWidth()
-                .padding(innerPadding),
-            style = MaterialTheme.typography.headlineLarge,
-            textAlign = TextAlign.Center,
+        Image(
+            painter = painterResource(R.drawable.metaguna),
+            "Metaguna University"
         )
-
+        TextField(
+            value = name,
+            label = { Text("Name")},
+            placeholder = { Text("Enter your name")},
+            onValueChange = { name = it },
+            modifier = Modifier.padding(innerPadding)
+        )
+        TextField(
+            value = major,
+            label = { Text("Major")},
+            placeholder = { Text("Enter your major")},
+            onValueChange = { major = it },
+            modifier = Modifier.padding(innerPadding)
+        )
     }
 }
 
@@ -71,6 +86,6 @@ fun Greeting(name: String, modifier: Modifier = Modifier) {
 @Composable
 fun GreetingPreview() {
     MPTheme {
-        Greeting("Android")
+        Greeting("", Modifier, MainActivity())
     }
 }
