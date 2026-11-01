@@ -28,6 +28,10 @@ class DetailActivity : ComponentActivity() {
         val genderText = findViewById<TextView>(R.id.gender_text)
         genderText.text = gender
 
+        val birthDate = intent.getStringExtra("BIRTH_DATE")
+        val birthDateText = findViewById<TextView>(R.id.birth_date_text)
+        birthDateText.text = birthDate
+
         val backBtn : Button = findViewById(R.id.button)
         backBtn.setOnClickListener {
             finish()

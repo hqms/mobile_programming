@@ -1,15 +1,19 @@
 package com.hqm.mp
 
+import android.app.DatePickerDialog
 import android.content.DialogInterface
 import android.os.Bundle
 import androidx.activity.enableEdgeToEdge
 import android.content.Intent
 import android.widget.Button
+import android.widget.EditText
 import android.widget.RadioGroup
 import android.widget.TextView
 import androidx.activity.ComponentActivity
 import androidx.appcompat.app.AlertDialog
 import android.widget.Toast
+import java.util.Calendar
+import java.util.Locale
 
 class ProfileActivity : ComponentActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -37,9 +41,29 @@ class ProfileActivity : ComponentActivity() {
 
             val dialog: AlertDialog = builder.create()
             dialog.show()
-
-
         }
+
+        val datepicker: Button = findViewById<Button>(R.id.datepicker)
+        datepicker.setOnClickListener {
+            val calendar = Calendar.getInstance()
+            val year = calendar.get(Calendar.YEAR)
+            val month = calendar.get(Calendar.MONTH)
+            val day = calendar.get(Calendar.DAY_OF_MONTH)
+
+            val dateDialog : DatePickerDialog = DatePickerDialog(
+                this,
+                {_ , year, month, day ->
+                    val formattedDate = String.format(Locale.getDefault(), "%02d/%02d/%d", day, month + 1, year)
+                    findViewById<EditText>(R.id.birth_date).setText(formattedDate)
+                },
+                year,
+                month,
+                day
+                )
+
+            dateDialog.show()
+        }
+
     }
 
     fun dialogListener(): DialogInterface.OnClickListener {
@@ -52,17 +76,27 @@ class ProfileActivity : ComponentActivity() {
                     val checked =
                         findViewById<RadioGroup>(R.id.gender_group).getCheckedRadioButtonId()
                     val gender = findViewById<TextView>(checked).text.toString()
+                    val birthDate = findViewById<TextView>(R.id.birth_date).text.toString()
 
                     val intent = Intent(this, DetailActivity::class.java)
                     intent.putExtra("NAME", name)
                     intent.putExtra("MAJOR", major)
                     intent.putExtra("GENDER", gender)
+                    intent.putExtra("BIRTH_DATE", birthDate)
                     startActivity(intent)
                 }
 
                 if (which == DialogInterface.BUTTON_NEGATIVE){
                     dialog.dismiss()
                 }
+            }
+        }
+    }
+
+    fun dateDialogListener(): DialogInterface.OnClickListener {
+        return DialogInterface.OnClickListener { dialog, which ->
+            run {
+
             }
         }
     }

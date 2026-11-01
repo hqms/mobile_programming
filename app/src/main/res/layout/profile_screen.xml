@@ -60,6 +60,31 @@
             android:text="Female" />
     </RadioGroup>
 
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        >
+
+        <EditText
+            android:id="@+id/birth_date"
+            android:layout_width="227dp"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:hint="Birth Date"
+            android:inputType="text"
+            android:onClick="dateDialogListener"
+            android:padding="@dimen/padding_default"
+            android:visibility="visible" />
+
+        <Button
+            android:id="@+id/datepicker"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="..." />
+
+    </LinearLayout>
+
     <Button
         android:id="@+id/detail_btn"
         android:layout_width="match_parent"
