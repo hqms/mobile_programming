@@ -86,6 +86,18 @@
     </LinearLayout>
 
     <Button
+        android:id="@+id/save"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="Save to File" />
+
+    <Button
+        android:id="@+id/load"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="Load from File" />
+
+    <Button
         android:id="@+id/button"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
