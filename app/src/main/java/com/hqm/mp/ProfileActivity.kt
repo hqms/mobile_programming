@@ -64,6 +64,11 @@ class ProfileActivity : ComponentActivity() {
             dateDialog.show()
         }
 
+        val galleryBtn : Button = findViewById(R.id.btn_gallery)
+        galleryBtn.setOnClickListener {
+            val intent = Intent(this, GalleryActivity::class.java)
+            startActivity(intent)
+        }
     }
 
     fun dialogListener(): DialogInterface.OnClickListener {
