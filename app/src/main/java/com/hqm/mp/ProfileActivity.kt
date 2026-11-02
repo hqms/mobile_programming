@@ -19,6 +19,7 @@ import androidx.appcompat.app.AppCompatActivity
 import androidx.appcompat.widget.Toolbar
 import androidx.core.view.ViewCompat
 import androidx.core.view.WindowInsetsCompat
+import androidx.preference.PreferenceManager
 import java.util.Calendar
 import java.util.Locale
 
@@ -90,6 +91,42 @@ class ProfileActivity : AppCompatActivity() {
 
         val listView = findViewById<ListView>(R.id.city)
         listView.adapter = adapter
+
+        loadProfileDataIfAlwaysLoad()
+    }
+
+    override fun onResume() {
+        super.onResume()
+        loadProfileDataIfAlwaysLoad()
+    }
+
+    private fun loadProfileDataIfAlwaysLoad() {
+        val prefs = PreferenceManager.getDefaultSharedPreferences(this)
+        val alwaysLoad = prefs.getBoolean("always_load", false)
+
+        if (alwaysLoad) {
+            try {
+                val file = openFileInput("profile.txt")
+                val text = file.bufferedReader().use { it.readText() }
+                val data = text.split("\n")
+                if (data.size >= 4) {
+                    findViewById<EditText>(R.id.name_text).setText(data[0])
+                    findViewById<EditText>(R.id.major_text).setText(data[1])
+
+                    val genderGroup = findViewById<RadioGroup>(R.id.gender_group)
+                    val genderStr = data[2].trim()
+                    if (genderStr.equals("Male", ignoreCase = true)) {
+                        genderGroup.check(R.id.man_radio)
+                    } else if (genderStr.equals("Female", ignoreCase = true)) {
+                        genderGroup.check(R.id.women_radio)
+                    }
+
+                    findViewById<EditText>(R.id.birth_date).setText(data[3])
+                }
+                file.close()
+            } catch (_: Exception) {
+            }
+        }
     }
 
     override fun onCreateOptionsMenu(menu: Menu): Boolean {
