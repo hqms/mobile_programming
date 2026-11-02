@@ -1,106 +1,116 @@
 <?xml version="1.0" encoding="utf-8"?>
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:id="@+id/main"
     android:orientation="vertical"
     android:layout_width="match_parent"
-    android:layout_height="match_parent"
-    android:padding="@dimen/padding_default"
-    >
+    android:layout_height="match_parent">
 
-    <ImageView
-        android:id="@+id/imageView"
+    <androidx.appcompat.widget.Toolbar
+        android:id="@+id/toolbar"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:contentDescription="@null"
-        android:src="@drawable/metaguna" />
-
-    <EditText
-        android:id="@+id/name_text"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:inputType="text"
-        android:padding="@dimen/padding_default"
-        android:hint="Name"
-        android:visibility="visible" />
-
-    <EditText
-        android:id="@+id/major_text"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:visibility="visible"
-        android:hint="Major"
-        android:inputType="text"
-        android:padding="@dimen/padding_default"
-         />
-
-    <TextView
-        android:id="@+id/textView4"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:paddingTop="@dimen/padding_default"
-        android:text="Gender" />
-
-    <RadioGroup
-        android:id="@+id/gender_group"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:orientation="horizontal">
-
-        <RadioButton
-            android:id="@+id/man_radio"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:paddingRight="@dimen/padding_default"
-            android:text="Male" />
-
-        <RadioButton
-            android:id="@+id/women_radio"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text="Female" />
-    </RadioGroup>
+        android:background="?attr/colorPrimary"
+        android:theme="@style/ThemeOverlay.AppCompat.Dark.ActionBar" />
 
     <LinearLayout
+        android:orientation="vertical"
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:orientation="horizontal"
-        >
+        android:layout_height="match_parent"
+        android:padding="@dimen/padding_default">
+
+        <ImageView
+            android:id="@+id/imageView"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:contentDescription="@null"
+            android:src="@drawable/metaguna" />
 
         <EditText
-            android:id="@+id/birth_date"
-            android:layout_width="227dp"
+            android:id="@+id/name_text"
+            android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_weight="1"
-            android:hint="Birth Date"
             android:inputType="text"
-            android:onClick="dateDialogListener"
             android:padding="@dimen/padding_default"
+            android:hint="Name"
             android:visibility="visible" />
 
-        <Button
-            android:id="@+id/datepicker"
-            android:layout_width="wrap_content"
+        <EditText
+            android:id="@+id/major_text"
+            android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:text="..." />
+            android:visibility="visible"
+            android:hint="Major"
+            android:inputType="text"
+            android:padding="@dimen/padding_default" />
+
+        <TextView
+            android:id="@+id/textView4"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:paddingTop="@dimen/padding_default"
+            android:text="Gender" />
+
+        <RadioGroup
+            android:id="@+id/gender_group"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal">
+
+            <RadioButton
+                android:id="@+id/man_radio"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:paddingRight="@dimen/padding_default"
+                android:text="Male" />
+
+            <RadioButton
+                android:id="@+id/women_radio"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Female" />
+        </RadioGroup>
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal">
+
+            <EditText
+                android:id="@+id/birth_date"
+                android:layout_width="227dp"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:hint="Birth Date"
+                android:inputType="text"
+                android:onClick="dateDialogListener"
+                android:padding="@dimen/padding_default"
+                android:visibility="visible" />
+
+            <Button
+                android:id="@+id/datepicker"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="..." />
+
+        </LinearLayout>
+
+        <ListView
+            android:id="@+id/city"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content" />
+
+        <Button
+            android:id="@+id/detail_btn"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="View Detail" />
+
+        <Button
+            android:id="@+id/btn_gallery"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="View Gallery" />
 
     </LinearLayout>
-
-    <ListView
-        android:id="@+id/city"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content" />
-
-    <Button
-        android:id="@+id/detail_btn"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:text="View Detail" />
-
-    <Button
-        android:id="@+id/btn_gallery"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:text="View Gallery" />
-
-
 </LinearLayout>

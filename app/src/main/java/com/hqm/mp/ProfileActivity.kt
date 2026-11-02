@@ -2,26 +2,40 @@ package com.hqm.mp
 
 import android.app.DatePickerDialog
 import android.content.DialogInterface
-import android.os.Bundle
-import androidx.activity.enableEdgeToEdge
 import android.content.Intent
+import android.os.Bundle
+import android.view.Menu
+import android.view.MenuItem
+import android.widget.ArrayAdapter
 import android.widget.Button
 import android.widget.EditText
+import android.widget.ListView
 import android.widget.RadioGroup
 import android.widget.TextView
-import androidx.activity.ComponentActivity
-import androidx.appcompat.app.AlertDialog
 import android.widget.Toast
+import androidx.activity.enableEdgeToEdge
+import androidx.appcompat.app.AlertDialog
+import androidx.appcompat.app.AppCompatActivity
+import androidx.appcompat.widget.Toolbar
+import androidx.core.view.ViewCompat
+import androidx.core.view.WindowInsetsCompat
 import java.util.Calendar
 import java.util.Locale
-import android.widget.ArrayAdapter
-import android.widget.ListView
-class ProfileActivity : ComponentActivity() {
+
+class ProfileActivity : AppCompatActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
 
         enableEdgeToEdge()
         setContentView(R.layout.profile_screen)
+        ViewCompat.setOnApplyWindowInsetsListener(findViewById(R.id.main)) { v, insets ->
+            val systemBars = insets.getInsets(WindowInsetsCompat.Type.systemBars())
+            v.setPadding(systemBars.left, systemBars.top, systemBars.right, systemBars.bottom)
+            insets
+        }
+
+        val toolbar = findViewById<Toolbar>(R.id.toolbar)
+        setSupportActionBar(toolbar)
 
         val detailBtn : Button = findViewById(R.id.detail_btn)
         detailBtn.setOnClickListener {
@@ -60,7 +74,7 @@ class ProfileActivity : ComponentActivity() {
                 year,
                 month,
                 day
-                )
+            )
 
             dateDialog.show()
         }
@@ -76,7 +90,21 @@ class ProfileActivity : ComponentActivity() {
 
         val listView = findViewById<ListView>(R.id.city)
         listView.adapter = adapter
+    }
 
+    override fun onCreateOptionsMenu(menu: Menu): Boolean {
+        menuInflater.inflate(R.menu.main_menu, menu)
+        return true
+    }
+
+    override fun onOptionsItemSelected(item: MenuItem): Boolean {
+        return when (item.itemId) {
+            R.id.action_settings -> {
+                startActivity(Intent(this, SettingsActivity::class.java))
+                true
+            }
+            else -> super.onOptionsItemSelected(item)
+        }
     }
 
     fun dialogListener(): DialogInterface.OnClickListener {
