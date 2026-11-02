@@ -14,7 +14,8 @@ import androidx.appcompat.app.AlertDialog
 import android.widget.Toast
 import java.util.Calendar
 import java.util.Locale
-
+import android.widget.ArrayAdapter
+import android.widget.ListView
 class ProfileActivity : ComponentActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -69,6 +70,13 @@ class ProfileActivity : ComponentActivity() {
             val intent = Intent(this, GalleryActivity::class.java)
             startActivity(intent)
         }
+
+        val cities = arrayOf("Jakarta", "Bandung", "Surabaya")
+        val adapter = ArrayAdapter(this, android.R.layout.simple_list_item_1, cities)
+
+        val listView = findViewById<ListView>(R.id.city)
+        listView.adapter = adapter
+
     }
 
     fun dialogListener(): DialogInterface.OnClickListener {
